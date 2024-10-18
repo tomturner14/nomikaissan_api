@@ -1,12 +1,10 @@
-version: '3'
+version: "3"
 services:
   db:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: 0Y4BfYkzJdac9ZLTl0jh
-      MYSQL_DATABASE: yourdb
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 0Y4BfYkzJdac9ZLTl0jh
+      MYSQL_DATABASE: nomikaisan
     volumes:
       - ./mysql-data:/var/lib/mysql
     ports:
@@ -14,7 +12,7 @@ services:
 
   web:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && rails server -b '0.0.0.0'"
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails server -b '0.0.0.0'"
     volumes:
       - .:/app
     ports:
@@ -22,4 +20,4 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: mysql2://youruser:yourpassword@db:3306/yourdb
+      DATABASE_URL: mysql2://root:0Y4BfYkzJdac9ZLTl0jh@db:3306/nomikaisan
