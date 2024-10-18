@@ -1,24 +1,57 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## How to build rails on docker
 
-Things you may want to cover:
+イメージをビルドする
 
-* Ruby version
+```bash
+docker-compose build
+```
 
-* System dependencies
+コンテナを起動する
 
-* Configuration
+```bash
+docker-compose up -d
+```
 
-* Database creation
+コンテナを停止する
 
-* Database initialization
+```bash
+docker-compose down
+```
 
-* How to run the test suite
+コンテナを再起動する
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+docker-compose restart
+```
 
-* Deployment instructions
+rails コンテナに入る
 
-* ...
+```bash
+docker-compose exec web bash
+```
+
+db コンテナに入る
+
+```bash
+docker-compose exec db bash
+```
+
+- Ruby version
+
+- System dependencies
+
+- Configuration
+
+- Database creation
+
+- Database initialization
+
+- How to run the test suite
+
+- Services (job queues, cache servers, search engines, etc.)
+
+- Deployment instructions
+
+- ...
