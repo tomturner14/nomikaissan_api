@@ -1,0 +1,25 @@
+current directory: C:/Users/Tomohiro.Yamakawa/Desktop/dev/nomikaissan_api/vendor/bundle/ruby/3.2.0/gems/date-3.4.0/ext/date
+C:/Ruby32-x64/bin/ruby.exe extconf.rb
+checking for rb_category_warn()... yes
+checking for timezone in time.h with  -Werror... no
+checking for altzone in time.h with  -Werror... no
+creating Makefile
+
+current directory: C:/Users/Tomohiro.Yamakawa/Desktop/dev/nomikaissan_api/vendor/bundle/ruby/3.2.0/gems/date-3.4.0/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20241127-26356-dt3ze8 sitelibdir\=./.gem.20241127-26356-dt3ze8 clean
+
+current directory: C:/Users/Tomohiro.Yamakawa/Desktop/dev/nomikaissan_api/vendor/bundle/ruby/3.2.0/gems/date-3.4.0/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20241127-26356-dt3ze8 sitelibdir\=./.gem.20241127-26356-dt3ze8
+generating date_core-x64-mingw-ucrt.def
+compiling date_core.c
+compiling date_parse.c
+compiling date_strftime.c
+compiling date_strptime.c
+linking shared-object date_core.so
+
+current directory: C:/Users/Tomohiro.Yamakawa/Desktop/dev/nomikaissan_api/vendor/bundle/ruby/3.2.0/gems/date-3.4.0/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20241127-26356-dt3ze8 sitelibdir\=./.gem.20241127-26356-dt3ze8 install
+/usr/bin/install -c -m 0755 date_core.so ./.gem.20241127-26356-dt3ze8
+
+current directory: C:/Users/Tomohiro.Yamakawa/Desktop/dev/nomikaissan_api/vendor/bundle/ruby/3.2.0/gems/date-3.4.0/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20241127-26356-dt3ze8 sitelibdir\=./.gem.20241127-26356-dt3ze8 clean
