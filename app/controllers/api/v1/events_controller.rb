@@ -7,8 +7,8 @@ module Api
       end
 
       def show
-        event = Event.find(params[:id])
-        render json: event
+        event = Event.find_by!(url_id: params[:id])
+        render json: event, include: [:event_dates]
       end
 
       def create
