@@ -27,6 +27,29 @@ module Api
         render json: { error: e.message }, status: :internal_server_error
       end
 
+      def create_attendance
+        event = Event.find_by!(url_id: params[:id])
+
+        ActiveRecord::Base.transasction do
+          participant = event.participants.create!(
+            name: params[:participant][:name]
+          )
+
+          params[:participant][:attendances].each do |attendance_params|
+            Attendance.create!(
+              participant: participant,
+              event_date_id: attendance_params[:event_date_id],
+              status: attendance_params[:state],
+              comment: attendance_params[:participant][:comment]
+            )
+          end
+        end
+
+        render json: { message: '出欠を登録しました' }, status: :created
+      rescue ActiveRecord::RecordInvalid => e
+        render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
+      end
+
       def update
         event = Event.find(params[:id])
         if event.update(event_params)
