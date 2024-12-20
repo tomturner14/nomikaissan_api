@@ -30,7 +30,7 @@ module Api
       def create_attendance
         event = Event.find_by!(url_id: params[:id])
 
-        ActiveRecord::Base.transasction do
+        ActiveRecord::Base.transaction do
           participant = event.participants.create!(
             name: params[:participant][:name]
           )
@@ -39,15 +39,20 @@ module Api
             Attendance.create!(
               participant: participant,
               event_date_id: attendance_params[:event_date_id],
-              status: attendance_params[:state],
-              comment: attendance_params[:participant][:comment]
+              status: attendance_params[:status],
+              comment: params[:participant][:comment]
             )
           end
+
+          render json: { message: '出欠を登録しました' }, status: :created
         end
 
-        render json: { message: '出欠を登録しました' }, status: :created
       rescue ActiveRecord::RecordInvalid => e
-        render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
+        render json: { error: e.message }, status: :unprocessable_entity
+      rescue => e
+        Rails.logger.error "エラー発生: #{e.class} - #{e.message}"
+        Rails.logger.error e.backtrace.join("\n")
+        render json: { errors: e.message }, status: :internal_server_error
       end
 
       def update
