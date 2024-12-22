@@ -8,7 +8,13 @@ module Api
 
       def show
         event = Event.find_by!(url_id: params[:id])
-        render json: event, include: [:event_dates]
+        render json: event, include: [
+          :event_dates,
+          :participants,
+          participants: {
+            include: [:attendances]
+          }
+        ]
       end
 
       def create
@@ -56,7 +62,7 @@ module Api
       end
 
       def update
-        event = Event.find(params[:id])
+        event = Event.find_by!(url_id: params[:id])
         if event.update(event_params)
           render json: event
         else
@@ -77,7 +83,7 @@ module Api
           :name,
           :memo,
           :url_id,
-          event_dates_attributes: [:date]
+          event_dates_attributes: [:id, :date, :_destroy]
         )
       end
     end
